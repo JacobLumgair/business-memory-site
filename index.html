@@ -6,6 +6,7 @@
     <title>Business Memory - The Email Assistant That Knows Your Business</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* --- VARIABLES --- */
         :root {
             --primary: #7b68ee;
             --primary-hover: #6a5acd;
@@ -17,11 +18,13 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
+        html, body {
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             background-color: var(--white);
+            width: 100%;
+            overflow-x: hidden;
         }
 
         /* --- UTILITIES --- */
@@ -29,6 +32,7 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
 
         .btn {
@@ -46,29 +50,20 @@
 
         .btn:hover { background-color: var(--primary-hover); }
 
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover { background-color: #f0f0ff; }
-
-        /* --- HEADER --- */
+        /* --- STANDARD HEADER (Scrolls away) --- */
         header {
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
+            /* No position: fixed/sticky here. It just sits at the top naturally. */
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
-            z-index: 100;
             border-bottom: 1px solid #f1f1f1;
+            padding: 20px 0;
+            width: 100%;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%; 
         }
 
         .logo {
@@ -77,12 +72,13 @@
             color: var(--text-dark);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         .hero {
-            padding: 80px 0 60px;
+            padding: 80px 0 60px; /* Standard padding */
             text-align: center;
             background: radial-gradient(circle at top, #f0f0ff 0%, #ffffff 70%);
         }
@@ -92,6 +88,7 @@
             font-weight: 800;
             margin-bottom: 20px;
             letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .hero p {
@@ -99,14 +96,6 @@
             color: var(--text-light);
             max-width: 600px;
             margin: 0 auto 30px;
-        }
-
-        .hero-img {
-            margin-top: 50px;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 100%;
-            border: 1px solid #eee;
         }
 
         /* --- FEATURES --- */
@@ -234,7 +223,7 @@
                 <p>The email assistant that knows your business rules, pricing, and context. Stop typing the same replies over and over.</p>
                 <a href="#" class="btn" style="font-size: 18px; padding: 15px 30px;">Get Business Memory</a>
                 
-                <div style="margin-top: 40px; height: 300px; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #999;">
+                <div style="margin-top: 40px; height: 300px; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #999; border: 1px solid #ddd;">
                     [ Insert Screenshot of "Draft Response" Button Here ]
                 </div>
             </div>
@@ -271,6 +260,7 @@
                     <div class="price-tag">$9<span>/month</span></div>
                     <ul class="features-list">
                         <li>✅ Unlimited Auto-Drafts</li>
+                        <li>✅ Custom Knowledge Base</li>
                         <li>✅ Cancel Anytime</li>
                     </ul>
                     <a href="#" class="btn" style="width: 100%; text-align: center;">Start Free Trial</a>
