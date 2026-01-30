@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Verified! - Business Memory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. GLOBAL VARIABLES & HEADER STYLES (FROM YOUR LANDING PAGE) --- */
+        :root {
+            --primary: #7b68ee;
+            --primary-hover: #6a5acd;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8f9fc;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white); /* Changed to white to match your header */
+            width: 100%;
+            overflow-x: hidden;
+            /* REMOVED display:flex so the header sits at the top */
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background-color: var(--primary-hover); }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #f1f1f1;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%; 
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        /* --- 2. SUCCESS PAGE SPECIFIC STYLES --- */
+        
+        /* Wrapper to center the success content below the header */
+        .success-content {
+            max-width: 900px; /* Kept tight for readability */
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        h1.verified-title { 
+            font-size: 36px; 
+            margin-bottom: 10px; 
+            letter-spacing: -0.02em; 
+            font-weight: 700;
+        }
+        
+        p.sub { color: var(--text-light); font-size: 18px; margin-bottom: 40px; }
+
+        /* STEPS GRID */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            text-align: left;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        .step-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-text { margin-bottom: 25px; }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        h3 { margin: 10px 0 5px 0; font-size: 18px; color: var(--text-dark); }
+        p.step-desc { color: var(--text-light); font-size: 14px; margin: 0; line-height: 1.5; }
+
+        /* MEDIA BOXES */
+        .media-container {
+            width: 100%;
+            background-color: #f3f4f6;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            flex-grow: 1;
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            min-height: 250px; 
+        }
+
+        /* Step 1: Custom BG + Screenshot */
+        .step-1-bg {
+            background-image: url('assets/pin-extension-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .media-container img.screenshot {
+            width: 85%; 
+            height: auto; 
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Step 2: Video */
+        .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid { grid-template-columns: 1fr; }
+            h1.verified-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="textlogo.png" alt="Business Memory Logo" style="height: 60px;">
+                </a>
+                <a href="#" class="btn">Add to Chrome</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="success-content">
+        <div class="success-icon">🎉</div>
+        <h1 class="verified-title">You're verified!</h1>
+        <p class="sub">Your account is active. Now, let's teach the AI your business.</p>
+
+        <div class="steps-grid">
+            
+            <div class="step-card">
+                <div class="step-text">
+                    <div class="step-number">1</div>
+                    <h3>Open the Extension</h3>
+                    <p class="step-desc">Click the puzzle piece icon in Chrome and pin <b>Business Memory</b> for easy access.</p>
+                </div>
+                
+                <div class="media-container step-1-bg">
+                    <img src="assets/pin-extension.png" alt="Pin Extension" class="screenshot">
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-text">
+                    <div class="step-number">2</div>
+                    <h3>Add Business Knowledge</h3>
+                    <p class="step-desc">Log in and type your first rule (e.g., "Refunds take 5 days") to build your brain.</p>
+                </div>
+                
+                <div class="media-container">
+                    <video autoplay loop muted playsinline>
+                        <source src="assets/add-knowledge.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
