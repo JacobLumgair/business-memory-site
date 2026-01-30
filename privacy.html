@@ -6,37 +6,34 @@
     <title>Privacy Policy - Business Memory</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIABLES (Matching Homepage) --- */
+        /* --- 1. GLOBAL VARIABLES & HEADER STYLES --- */
         :root {
             --primary: #7b68ee;
             --primary-hover: #6a5acd;
             --text-dark: #1f2937;
-            --text-light: #4b5563;
+            --text-light: #6b7280;
             --bg-light: #f8f9fc;
             --white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
+        body {
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
             background-color: var(--bg-light);
             width: 100%;
             overflow-x: hidden;
+            
+            /* Sticky Footer Setup */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- UTILITIES --- */
+        /* UTILITIES */
         .container {
-            max-width: 800px; /* Kept narrower for readability */
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        /* Broader container just for the header to match homepage alignment */
-        .header-container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
@@ -55,22 +52,23 @@
             border: none;
             cursor: pointer;
         }
-
         .btn:hover { background-color: var(--primary-hover); }
 
-        /* --- HEADER (Standard / Scrolls Away) --- */
+        /* HEADER */
         header {
-            background: var(--white);
-            border-bottom: 1px solid #e5e7eb;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #f1f1f1;
             padding: 20px 0;
             width: 100%;
+            top: 0;
+            z-index: 100;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            width: 100%; 
         }
 
         .logo {
@@ -83,38 +81,67 @@
             text-decoration: none;
         }
 
-        /* --- POLICY CONTENT --- */
-        .policy-content {
-            background: var(--white);
-            padding: 60px;
-            margin: 40px 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        /* --- 2. PRIVACY CONTENT STYLES --- */
+        .policy-wrapper {
+            flex-grow: 1; 
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
         }
 
-        h1 { margin-bottom: 10px; font-size: 32px; }
-        .last-updated { color: var(--text-light); margin-bottom: 40px; display: block; }
+        .policy-card {
+            background: var(--white);
+            max-width: 800px;
+            width: 100%;
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        h1 { margin-bottom: 10px; font-size: 36px; letter-spacing: -0.02em; font-weight: 700; }
+        .last-updated { color: var(--text-light); margin-bottom: 40px; display: block; font-size: 14px; }
         
-        h2 { margin-top: 30px; margin-bottom: 15px; font-size: 20px; }
+        h2 { margin-top: 30px; margin-bottom: 15px; font-size: 20px; font-weight: 600; color: var(--text-dark); }
         p { margin-bottom: 15px; color: var(--text-light); }
         ul { margin-bottom: 15px; margin-left: 20px; color: var(--text-light); }
         li { margin-bottom: 8px; }
 
-        /* --- FOOTER --- */
+        /* --- 3. FOOTER STYLES --- */
         footer {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-light);
+            background: var(--text-dark);
+            color: #d1d5db;
+            padding: 50px 0;
             font-size: 14px;
+            margin-top: auto;
         }
-        
-        footer a { color: var(--text-dark); text-decoration: none; margin: 0 10px; }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .policy-card { padding: 30px; }
+            .footer-content { flex-direction: column; gap: 20px; }
+            .footer-links { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-container">
+        <div class="container">
             <nav>
                 <a href="index.html" class="logo">
                     <img src="textlogo.png" alt="Business Memory Logo" style="height: 60px;">
@@ -124,10 +151,10 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="policy-content">
+    <div class="policy-wrapper">
+        <div class="policy-card">
             <h1>Privacy Policy</h1>
-            <span class="last-updated">Last Updated: January 27, 2026</span>
+            <span class="last-updated">Last Updated: January 30, 2026</span>
 
             <h2>1. Introduction</h2>
             <p>Business Memory ("we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we handle your data when you use our Chrome Extension and services.</p>
@@ -145,30 +172,41 @@
             <ul>
                 <li>To generate relevant email replies using Artificial Intelligence.</li>
                 <li>To manage your subscription and login session.</li>
+                <li><strong>We do not sell, trade, or rent your personal identification information to others.</strong></li>
             </ul>
 
-            <h2>4. Data Retention & Security (Crucial)</h2>
+            <h2>4. Data Retention & Security</h2>
             <p><strong>We do not store your email conversations.</strong></p>
             <p>When you generate a reply, the email text is sent to our secure server, processed by the AI model, and immediately discarded after the response is returned to you. We do not use your email data to train our AI models.</p>
 
             <h2>5. Third-Party Services</h2>
             <p>We use trusted third-party providers to operate our service:</p>
             <ul>
-                <li><strong>Supabase:</strong> For secure user authentication and database hosting.</li>
+                <li><strong>Supabase:</strong> For secure user authentication, database hosting, and backend processing (to securely route your requests).</li>                
                 <li><strong>Stripe:</strong> For payment processing (we do not see or store your credit card details).</li>
-                <li><strong>LLM Providers (e.g., OpenAI):</strong> For generating the text. Data sent to them is not used for model training.</li>
+                <li><strong>OpenAI (API):</strong> We use the OpenAI API to generate the email text. Data sent via the API is <strong>not</strong> used to train OpenAI's models and is retained only temporarily for abuse monitoring.</li>
             </ul>
 
-            <h2>6. Contact Us</h2>
+            <h2>6. Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
+
+            <h2>7. Contact Us</h2>
             <p>If you have any questions about this policy or your data, please contact us at:</p>
-            <p><strong>Email:</strong> info@businessmemory.com</p>
+            <p><strong>Email:</strong> hello@businessmemory.com</p>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 Business Memory. All rights reserved.
-        <br><br>
-        <a href="index.html">Home</a> | <a href="privacy.html">Privacy</a>
+        <div class="container footer-content">
+            <div>
+                &copy; 2026 Business Memory. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="mailto:support@yourdomain.com">Contact Support</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
     </footer>
 
 </body>

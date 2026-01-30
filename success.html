@@ -6,7 +6,7 @@
     <title>You're Verified! - Business Memory</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. GLOBAL VARIABLES & HEADER STYLES (FROM YOUR LANDING PAGE) --- */
+        /* --- 1. GLOBAL VARIABLES & HEADER STYLES --- */
         :root {
             --primary: #7b68ee;
             --primary-hover: #6a5acd;
@@ -22,10 +22,13 @@
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
             line-height: 1.6;
-            background-color: var(--white); /* Changed to white to match your header */
+            background-color: var(--white);
             width: 100%;
             overflow-x: hidden;
-            /* REMOVED display:flex so the header sits at the top */
+            /* Flex column ensures footer pushes down if content is short */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
         }
 
         /* UTILITIES */
@@ -79,13 +82,14 @@
         
         /* Wrapper to center the success content below the header */
         .success-content {
-            max-width: 900px; /* Kept tight for readability */
+            max-width: 900px;
             margin: 60px auto;
             padding: 0 20px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-grow: 1; /* Pushes footer to bottom */
         }
 
         .success-icon {
@@ -179,6 +183,29 @@
             display: block;
         }
 
+        /* --- 3. FOOTER STYLES --- */
+        footer {
+            background: var(--text-dark);
+            color: #d1d5db;
+            padding: 50px 0;
+            font-size: 14px;
+            margin-top: auto; /* Ensures footer stays at bottom */
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
         @keyframes popIn {
             0% { transform: scale(0); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
@@ -187,6 +214,8 @@
         @media (max-width: 768px) {
             .steps-grid { grid-template-columns: 1fr; }
             h1.verified-title { font-size: 28px; }
+            .footer-content { flex-direction: column; gap: 20px; }
+            .footer-links { margin-left: 0; }
         }
     </style>
 </head>
@@ -238,6 +267,19 @@
 
         </div>
     </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div>
+                &copy; 2026 Business Memory. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="mailto:support@yourdomain.com">Contact Support</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

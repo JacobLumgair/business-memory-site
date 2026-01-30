@@ -27,6 +27,34 @@
             overflow-x: hidden;
         }
 
+        /* --- SPOTLIGHT EFFECT STYLES --- */
+        
+        /* The dark backdrop layer */
+        .dim-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7); /* 70% opacity black */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 900; /* High, but below the active video (950) */
+        }
+
+        .dim-overlay.active {
+            opacity: 1;
+        }
+
+        /* Active state for the Video Card */
+        .media-card.spotlight {
+            transform: scale(1.15);
+            z-index: 950; /* Higher than overlay (900) */
+            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            border-color: var(--primary);
+        }
+
         /* --- UTILITIES --- */
         .container {
             max-width: 1100px;
@@ -50,13 +78,42 @@
 
         .btn:hover { background-color: var(--primary-hover); }
 
-        /* --- STANDARD HEADER (Scrolls away) --- */
+        /* --- ICON SYSTEM --- */
+        .icon-small {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .feature-icon-box {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(123, 104, 238, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon-box svg {
+            width: 28px;
+            height: 28px;
+            color: var(--primary);
+            stroke-width: 2;
+        }
+
+        /* HEADER */
         header {
-            /* No position: fixed/sticky here. It just sits at the top naturally. */
             background: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid #f1f1f1;
             padding: 20px 0;
             width: 100%;
+            /* Kept sticky so it doesn't disappear on this long page */
+            position: sticky;
+            top: 0;
+            z-index: 100; 
         }
 
         nav {
@@ -78,17 +135,18 @@
 
         /* --- HERO --- */
         .hero {
-            padding: 80px 0 60px; /* Standard padding */
+            padding: 100px 0 80px;
             text-align: center;
             background: radial-gradient(circle at top, #f0f0ff 0%, #ffffff 70%);
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 800;
             margin-bottom: 20px;
-            letter-spacing: -1px;
-            line-height: 1.2;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            color: var(--text-dark);
         }
 
         .hero p {
@@ -98,9 +156,79 @@
             margin: 0 auto 30px;
         }
 
-        /* --- FEATURES --- */
+        /* --- SHOWCASE SECTIONS --- */
+        .showcase {
+            padding: 100px 0;
+            border-bottom: 1px solid #f3f4f6;
+            
+            /* SPOTLIGHT FIX: No z-index here */
+            position: relative; 
+        }
+
+        .showcase-container {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .showcase.reverse .showcase-container {
+            flex-direction: row-reverse;
+        }
+
+        .showcase-text {
+            flex: 1;
+        }
+
+        .showcase-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .showcase-text p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .showcase-text ul { list-style: none; color: var(--text-light); }
+        .showcase-text li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+
+
+        /* --- MEDIA VARIATIONS --- */
+        .media-column.portrait {
+            flex: 0 0 350px; 
+            width: 350px;
+        }
+
+        .media-column.landscape {
+            flex: 1.5; 
+        }
+
+        .media-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            line-height: 0;
+            width: 100%;
+            cursor: pointer;
+            position: relative;
+            /* Smooth transitions */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .media-card video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- FEATURES GRID --- */
         .features {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: var(--bg-light);
         }
 
@@ -108,6 +236,7 @@
             text-align: center;
             font-size: 32px;
             margin-bottom: 50px;
+            font-weight: 700;
         }
 
         .feature-grid {
@@ -124,17 +253,11 @@
             border: 1px solid #eee;
         }
 
-        .icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-card h3 { margin-bottom: 10px; }
+        .feature-card h3 { margin-bottom: 10px; font-weight: 600; }
         .feature-card p { color: var(--text-light); font-size: 15px; }
 
         /* --- PRICING --- */
-        .pricing { padding: 80px 0; text-align: center; }
+        .pricing { padding: 100px 0; text-align: center; }
 
         .price-card {
             background: var(--white);
@@ -144,12 +267,13 @@
             max-width: 400px;
             margin: 0 auto;
             position: relative;
+            box-shadow: 0 10px 25px rgba(123, 104, 238, 0.15);
         }
 
         .price-tag {
             font-size: 48px;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--text-dark);
             margin: 20px 0;
         }
 
@@ -170,13 +294,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 15px;
         }
 
         /* --- FOOTER --- */
         footer {
             background: var(--text-dark);
             color: #d1d5db;
-            padding: 40px 0;
+            padding: 50px 0;
             font-size: 14px;
         }
 
@@ -195,9 +320,24 @@
         .footer-links a:hover { color: var(--white); }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 16px; }
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 42px; }
+            
+            .showcase-container, 
+            .showcase.reverse .showcase-container {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .media-column.portrait, 
+            .media-column.landscape {
+                flex: auto;
+                width: 100%; 
+                max-width: 400px;
+            }
+            
+            .showcase-text li { justify-content: center; }
             .footer-content { flex-direction: column; gap: 20px; }
             .footer-links { margin-left: 0; }
         }
@@ -205,10 +345,12 @@
 </head>
 <body>
 
+    <div class="dim-overlay"></div>
+
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">
+                <a href="index.html" class="logo">
                     <img src="textlogo.png" alt="Business Memory Logo" style="height: 60px;">
                 </a>
                 <a href="#" class="btn">Add to Chrome</a>
@@ -220,33 +362,97 @@
         <section class="hero">
             <div class="container">
                 <h1>Stop Repeating Yourself.</h1>
-                <p>The email assistant that knows your businesses context. Stop typing the same replies over and over.</p>
+                <p>The email assistant that knows your business context. Stop typing the same replies over and over.</p>
                 <a href="#" class="btn" style="font-size: 18px; padding: 15px 30px;">Get Business Memory</a>
+            </div>
+        </section>
+
+        <section class="showcase">
+            <div class="container showcase-container">
+                <div class="showcase-text">
+                    <h2>1. Train Your Brain</h2>
+                    <p>Simply open the extension and add your business rules. Whether it's refund policies, pricing tiers, or scheduling rules—teach the AI once, and it remembers forever.</p>
+                    <ul style="list-style: none; color: var(--text-light);">
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            Add facts in plain language
+                        </li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            Update rules anytime
+                        </li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            Secure & Private storage
+                        </li>
+                    </ul>
+                </div>
                 
-                <div style="margin-top: 40px; height: 300px; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #999; border: 1px solid #ddd;">
-                    [ Insert Screenshot of "Draft Response" Button Here ]
+                <div class="media-column portrait">
+                    <div class="media-card">
+                        <video autoplay loop muted playsinline>
+                            <source src="assets/input-knowledge.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="showcase reverse">
+            <div class="container showcase-container">
+                <div class="showcase-text">
+                    <h2>2. Reply in Seconds</h2>
+                    <p>When you get an email, just click "Auto-Draft". Business Memory reads the email, checks your knowledge base, and writes a perfect response instantly.</p>
+                    <ul style="list-style: none; color: var(--text-light);">
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Context-aware answers
+                        </li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Review and edit before sending
+                        </li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            Saves hours every week
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="media-column landscape">
+                    <div class="media-card">
+                        <video autoplay loop muted playsinline>
+                            <source src="assets/auto-reply.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="features">
             <div class="container">
-                <h2 class="section-title">How It Works</h2>
+                <h2 class="section-title">Why Business Memory?</h2>
                 <div class="feature-grid">
                     <div class="feature-card">
-                        <span class="icon">📥</span>
-                        <h3>1. Store Your Context</h3>
-                        <p>Upload your pricing, return policies, and business rules into the secure knowledge base.</p>
+                        <div class="feature-icon-box">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.75 6.75C4.75 5.64543 5.64543 4.75 6.75 4.75H17.25C18.3546 4.75 19.25 5.64543 19.25 6.75V17.25C19.25 18.3546 18.3546 19.25 17.25 19.25H6.75C5.64543 19.25 4.75 18.3546 4.75 17.25V6.75Z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.75V15.25"></path><path stroke-linecap="round" stroke-linejoin="round" d="M8.75 12H15.25"></path></svg>
+                        </div>
+                        <h3>Shared Context</h3>
+                        <p>Unlike generic AI, this one actually knows <i>your</i> business rules and policies.</p>
                     </div>
                     <div class="feature-card">
-                        <span class="icon">⚡</span>
-                        <h3>2. Click "Auto-Draft"</h3>
-                        <p>When replying to an email in Gmail, simply click the purple Draft button.</p>
+                        <div class="feature-icon-box">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"></path></svg>
+                        </div>
+                        <h3>Private & Secure</h3>
+                        <p>Your business data is stored securely and is only used to generate your drafts.</p>
                     </div>
                     <div class="feature-card">
-                        <span class="icon">✍️</span>
-                        <h3>3. Review & Send</h3>
-                        <p>Business Memory drafts a perfect response based on <i>your</i> rules. Review it and hit send.</p>
+                        <div class="feature-icon-box">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path></svg>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Works directly inside Gmail. No switching tabs or copy-pasting required.</p>
                     </div>
                 </div>
             </div>
@@ -259,9 +465,22 @@
                     <h3>Pro Plan</h3>
                     <div class="price-tag">$9<span>/month</span></div>
                     <ul class="features-list">
-                        <li>✅ Unlimited Auto-Drafts</li>
-                        <li>✅ Custom Knowledge Base</li>
-                        <li>✅ Cancel Anytime</li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            Unlimited Auto-Drafts
+                        </li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            Custom Knowledge Base
+                        </li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            Works in Gmail
+                        </li>
+                        <li>
+                            <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            Cancel Anytime
+                        </li>
                     </ul>
                     <a href="#" class="btn" style="width: 100%; text-align: center;">Start Free Trial</a>
                 </div>
@@ -281,6 +500,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mediaCards = document.querySelectorAll('.media-card');
+            const overlay = document.querySelector('.dim-overlay');
+
+            mediaCards.forEach(card => {
+                // MOUSE ENTER: Darken bg, scale video
+                card.addEventListener('mouseenter', () => {
+                    overlay.classList.add('active');
+                    card.classList.add('spotlight');
+                });
+
+                // MOUSE LEAVE: Restore
+                card.addEventListener('mouseleave', () => {
+                    overlay.classList.remove('active');
+                    card.classList.remove('spotlight');
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
