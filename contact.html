@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Business Memory</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES (MATCHING INDEX.HTML) --- */
+        :root {
+            --primary: #7b68ee;
+            --primary-hover: #6a5acd;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8f9fc;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* UTILITIES */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background-color: var(--primary-hover); }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #f1f1f1;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%; 
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        /* --- CONTACT CONTENT --- */
+        .contact-wrapper {
+            flex-grow: 1;
+            padding: 80px 0;
+        }
+
+        .contact-card {
+            background: var(--white);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-header { text-align: center; margin-bottom: 30px; }
+        .contact-header h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+        .contact-header p { color: var(--text-light); font-size: 16px; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 500; margin-bottom: 8px; font-size: 14px; }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+        .form-control:focus { outline: none; border-color: var(--primary); }
+        
+        textarea.form-control { resize: vertical; min-height: 120px; }
+
+        .submit-btn { width: 100%; font-size: 16px; margin-top: 10px; }
+
+        .alt-contact {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #f3f4f6;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        .alt-contact a { color: var(--primary); text-decoration: none; font-weight: 500; }
+
+        /* FOOTER */
+        footer {
+            background: var(--text-dark);
+            color: #d1d5db;
+            padding: 50px 0;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-links a { color: #d1d5db; text-decoration: none; margin-left: 20px; }
+        .footer-links a:hover { color: var(--white); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-card { padding: 30px; margin: 0 20px; }
+            .footer-content { flex-direction: column; gap: 20px; }
+            .footer-links { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="textlogo.png" alt="Business Memory Logo" style="height: 60px;">
+                </a>
+                <a href="#" class="btn">Add to Chrome</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contact-wrapper">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-header">
+                    <h1>Get in Touch</h1>
+                    <p>Have a question or need support? Drop us a message.</p>
+                </div>
+
+                <form action="https://formspree.io/f/mojlalga" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Jane Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="jane@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="How can we help?" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn submit-btn">Send Message</button>
+                </form>
+
+                <div class="alt-contact">
+                    Or email us directly at <br>
+                    <a href="mailto:hello@businessmemory.com">hello@businessmemory.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div>
+                &copy; 2026 Business Memory. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="contact.html" style="color: white;">Contact Support</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
